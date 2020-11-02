@@ -15,37 +15,40 @@ public class Main {
         SessionFactory factory = null;
 
         try {
-            // записываем в базу
-
 //            factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
             factory = new Configuration().configure().buildSessionFactory();
+
             DAO<Engine, String> engineDAO = new EngineDAO(factory);
 
+            /**
+             * записываем в базу */
             final Engine engine = new Engine();
             engine.setModel("engine_model_03");
             engine.setPower(12345);
+//            engineDAO.create(engine);
 
-            engineDAO.create(engine);
+            /**
+             *  читаем из базы  */
+            final Engine result = engineDAO.read("engine_model_03");
+            System.out.println("\n  Created : " + result + "\n");
 
-            // читаем из базы
+            /**
+             * обновляем данные в базе (прежде надо достать обновляемые данные) */
+            result.setPower(54321);
+            engineDAO.update(result);
+            /**
+             * и выводим результат обновления   */
+            final Engine update = engineDAO.read("engine_model_03");
+            System.out.println("\n  Updated : " + update + "\n");
 
-//            final Engine result = engineDAO.read("engine_model_03");
-//            System.out.println("Created : " + result);
-//            System.out.println();
-//
-//            result.setPower(54321);
-//            engineDAO.update(result);
-//
-//            final Engine update = engineDAO.read("engine_model_03");
-//            System.out.println("Updated : " + update);
-//            System.out.println();
-//
-//            engineDAO.delete(new Engine("engine_model_03", 54321));
-//
-//            System.out.println("Deleted(empty obj) : " + engineDAO.read("engine_model_03"));
-
+            /**
+             * удаляем из базы данных   */
+            engineDAO.delete(new Engine("engine_model_03"));
+            // теперь пытаемся вытащить что-то по удаленному ключу, будет - Engine(model=null, power=null)
+            System.out.println("\n  Deleted(empty obj) : " + engineDAO.read("engine_model_03") + "\n");
         } finally {
             if (factory != null) {
+                System.out.println("null");
                 factory.close();
             }
         }
