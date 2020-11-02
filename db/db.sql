@@ -9,3 +9,5 @@ CREATE TABLE IF NOT EXISTS engines(
 
 INSERT INTO engines (model, power) VALUES ('engine_model_01', 1250);
 INSERT INTO engines (model, power) VALUES ('engine_model_02', 2820);
+
+
