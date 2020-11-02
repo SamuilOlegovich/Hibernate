@@ -1,33 +1,28 @@
 package hiber.model;
 
 
-import javax.persistence.Id;
 import lombok.*;
 
+//import javax.persistence.Id;
+
+//import lombok.*;
+import javax.persistence.*;
 
 
 @Data                               // анотация выполяет роль замены гетеров и сетерв
 @ToString
 @EqualsAndHashCode
-//@NoArgsConstructor                  // анотация заменяет обязательное присутствие пустого конструктора
+@NoArgsConstructor                  // анотация заменяет обязательное присутствие пустого конструктора
 @AllArgsConstructor                 // анотация заменяет присутствие конструктора c параметрами
 public class Engine {
     /**
-     * название полей как и у базы  */
+     * если включены анотации по конструкторам, то нельзя делать ни какой другой конструктор вручную
+     * название полей как и у базы
+     */
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private String model;
     private int power;
-
-
-
-
-
-
-    public Engine() { }
-
-    public Engine(String model) {
-        this.model = model;
-    }
 
 
 

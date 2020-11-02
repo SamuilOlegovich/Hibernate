@@ -25,7 +25,7 @@ public class Main {
             final Engine engine = new Engine();
             engine.setModel("engine_model_03");
             engine.setPower(12345);
-//            engineDAO.create(engine);
+            engineDAO.create(engine);
 
             /**
              *  читаем из базы  */
@@ -43,7 +43,9 @@ public class Main {
 
             /**
              * удаляем из базы данных   */
-            engineDAO.delete(new Engine("engine_model_03"));
+            Engine engineDelete = new Engine();
+            engineDelete.setModel("engine_model_03");
+            engineDAO.delete(engineDelete);
             // теперь пытаемся вытащить что-то по удаленному ключу, будет - Engine(model=null, power=null)
             System.out.println("\n  Deleted(empty obj) : " + engineDAO.read("engine_model_03") + "\n");
         } finally {
