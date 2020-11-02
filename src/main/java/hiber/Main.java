@@ -15,7 +15,9 @@ public class Main {
         SessionFactory factory = null;
 
         try {
+            // записываем в базу
 
+//            factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
             factory = new Configuration().configure().buildSessionFactory();
             DAO<Engine, String> engineDAO = new EngineDAO(factory);
 
@@ -24,6 +26,8 @@ public class Main {
             engine.setPower(12345);
 
             engineDAO.create(engine);
+
+            // читаем из базы
 
 //            final Engine result = engineDAO.read("engine_model_03");
 //            System.out.println("Created : " + result);
@@ -39,6 +43,7 @@ public class Main {
 //            engineDAO.delete(new Engine("engine_model_03", 54321));
 //
 //            System.out.println("Deleted(empty obj) : " + engineDAO.read("engine_model_03"));
+
         } finally {
             if (factory != null) {
                 factory.close();

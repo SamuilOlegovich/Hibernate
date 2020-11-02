@@ -1,8 +1,7 @@
 --  название базы данных
---CREATE DATABASE config_lesson ENCODING 'UTF-8';
-CREATE DATABASE Hiber ENCODING 'UTF-8';
-
-CREATE TABLE IF NOT EXISTS engines (
+CREATE DATABASE config_lesson_hibernate ENCODING 'UTF-8';
+-- название таблицы в конце
+CREATE TABLE IF NOT EXISTS engines(
 --  поля в базе данных
   model VARCHAR(25) PRIMARY KEY,
   power INTEGER     NOT NULL

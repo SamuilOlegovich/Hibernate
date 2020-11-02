@@ -9,7 +9,7 @@ import hiber.model.Engine;
 
 
 /**
- * данный класс потокобезопасен и нет смысла его во что-то оборачивать
+ * данный класс потокобезопасен и нет смысла его во что-то оборачивать (атомик референси)
  */
 public class EngineDAO implements DAO<Engine, String> {
     /**
@@ -21,6 +21,7 @@ public class EngineDAO implements DAO<Engine, String> {
     public EngineDAO(//@NonNull
                      final SessionFactory factory) {
         this.factory = factory;
+
     }
 
 
@@ -34,6 +35,7 @@ public class EngineDAO implements DAO<Engine, String> {
     public void create(//@NonNull
                            final Engine engine) {
         // создать сессию (открываем ворота для работы..)
+        // сессия сама не потокобезопасная
         try (final Session session = factory.openSession()) {
             // начать транзакцию (либо записали что-то либо нет)
             // если что-то произойдет в этот мометн - то все изменения откатятся

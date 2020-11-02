@@ -7,7 +7,9 @@
 <!--        <property name="connection.password">1</property>-->
 <!--        <property name="dialect">org.hibernate.dialect.PostgreSQL94Dialect</property>-->
 
-        <property name="connection.url">jdbc:postgresql://localhost:3306/Hiber</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/config_lesson_hibernate</property>
+<!--        <property name="connection.url">jdbc:mysql://localhost:3306/Application_on_JavaJavaFX</property>-->
+<!--        <property name="connection.url">jdbc:mysql://localhost:3306/mysql</property>-->
         <property name="connection.driver_class">org.mysql.Driver</property>
         <property name="connection.username">root</property>
         <property name="connection.password">my4308854my</property>
@@ -17,7 +19,8 @@
 <!--     тут прописываем адреса для каждого объекта в базе данных для них будут сделаны конфигурационные файлы
          в папке resources .... далее повторяется структура папки java
          в точности как расположен путь к данному файлу     -->
-        <mapping resource="hiber/model/Engine.hbm.xml" />
+<!--        <mapping resource="hiber/model/Engine.hbm.xml" />-->
+        <mapping resource="hiber.model/Engine.hbm.xml" />
 
 <!--        <mapping resource="ru/javavision/model/Director.hbm.xml" />-->
 <!--        <mapping resource="ru/javavision/model/HeadDepartment.hbm.xml" />-->
