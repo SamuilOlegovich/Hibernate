@@ -1,23 +1,21 @@
 package hiber;
 
-import hiber.dao.DAO;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.SessionFactory;
 import hiber.dao.EngineDAO;
 import hiber.model.Engine;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+import hiber.dao.DAO;
 
 
 
 public class Main {
 
     public static void main(String[] args) {
-
         SessionFactory factory = null;
 
         try {
-//            factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+//            factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory(); // если не находит файл
             factory = new Configuration().configure().buildSessionFactory();
-
             DAO<Engine, String> engineDAO = new EngineDAO(factory);
 
             /**
@@ -47,10 +45,9 @@ public class Main {
             engineDelete.setModel("engine_model_03");
             engineDAO.delete(engineDelete);
             // теперь пытаемся вытащить что-то по удаленному ключу, будет - Engine(model=null, power=null)
-            System.out.println("\n  Deleted(empty obj) : " + engineDAO.read("engine_model_03") + "\n");
+            System.out.println("\n  Deleted : " + engineDAO.read("engine_model_03") + "\n");
         } finally {
             if (factory != null) {
-                System.out.println("null");
                 factory.close();
             }
         }

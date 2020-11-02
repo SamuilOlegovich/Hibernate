@@ -1,12 +1,8 @@
 package hiber.model;
 
 
-import lombok.*;
-
-//import javax.persistence.Id;
-
-//import lombok.*;
 import javax.persistence.*;
+import lombok.*;
 
 
 @Data                               // анотация выполяет роль замены гетеров и сетерв
@@ -17,25 +13,9 @@ import javax.persistence.*;
 public class Engine {
     /**
      * если включены анотации по конструкторам, то нельзя делать ни какой другой конструктор вручную
-     * название полей как и у базы
-     */
+     * название полей как и у базы  */
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE) работает в postgresql - генерит уникалюную строку
     private String model;
     private int power;
-
-
-
-    public String getModel() {
-        return model;
-    }
-    public void setModel(String model) {
-        this.model = model;
-    }
-    public int getPower() {
-        return power;
-    }
-    public void setPower(int power) {
-        this.power = power;
-    }
 }

@@ -6,7 +6,6 @@ import lombok.NonNull;
 import org.hibernate.SessionFactory;
 import org.hibernate.Session;
 import hiber.model.Engine;
-import javax.persistence.*;
 
 
 
@@ -35,17 +34,21 @@ public class EngineDAO implements DAO<Engine, String> {
          * создать сессию (открываем ворота для работы..)
          * сессия сама не потокобезопасная  */
         try (final Session session = factory.openSession()) {
-            // начать транзакцию (либо записали что-то либо нет)
-            // если что-то произойдет в этот мометн - то все изменения откатятся
+            /**
+             * начать транзакцию (либо записали что-то либо нет)
+             * если что-то произойдет в этот мометн - то все изменения откатятся    */
             session.beginTransaction();
-            // создаем новый объект
+            /**
+             *  создаем новый объект    */
 //            session.save(engine);
+            /**
+             * метод может создать если такого айди еще нет
+             * или же обновит информацию если уже есть такой айди   */
             session.saveOrUpdate(engine);
-            // получаем транзакцию и делаем коммит
+            /**
+             * получаем транзакцию и делаем коммит  */
             session.getTransaction().commit();
-          /**
-           * session.saveOrUpdate() - метод может создать если такого айди еще нет
-           * или же обновит информацию если уже есть такой айди */
+
         }
     }
 
